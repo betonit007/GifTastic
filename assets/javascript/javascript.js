@@ -38,12 +38,12 @@ $(document).ready(function() {
 
          for (var i = 0; i < videoReturnAmount; i++) {
       
-           var video = response.data[i].images.original.url;
+           video = response.data[i].images.original.url;
 
-           var image = video.replace("giphy.gif", "480w_s.jpg");
+           image = video.replace("giphy.gif", "480w_s.jpg");
            console.log(image);
          
-           $("#videoField").append("<img src=" + video + ">");
+           $("#videoField").append("<img src=" + image + ">");
 
           }
 
