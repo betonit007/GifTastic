@@ -15,6 +15,12 @@ for (var i = 0; i < topics.length; i++) {
 
 $(document).ready(function() {
 
+  $(document).on("click", "img", function() {
+    var picValue = $(this).attr("src");
+
+    console.log(picValue);
+  });
+   /////////////////on click get button text and retrieve api info//////////////////////////////////////
     $(document).on("click", "button.topicBut", function() {
         $("#videoField").empty();
         var clickValue = $(this).text();
@@ -35,6 +41,7 @@ $(document).ready(function() {
            var video = response.data[i].images.original.url;
 
            var image = video.replace("giphy.gif", "480w_s.jpg");
+           console.log(image);
          
            $("#videoField").append("<img src=" + video + ">");
 
