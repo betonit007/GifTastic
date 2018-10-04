@@ -5,3 +5,8 @@
 button {
     margin: 5px;
 }
+
+img {
+    margin: 10px;
+    float: left;
+}

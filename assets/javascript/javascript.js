@@ -17,15 +17,20 @@ $(document).ready(function() {
 
   $(document).on("click", "img", function() {
     var picValue = $(this).attr("src");
+    if (picValue.indexOf("giphy_s.gif") !== -1) {
+      picValue = picValue.replace("giphy_s.gif", "giphy.gif");
+      $(this).attr("src", picValue);
+    }
+    else {
+     picValue = picValue.replace( "giphy.gif", "giphy_s.gif");
+    $(this).attr("src", picValue);
+    }
 
-    console.log(picValue);
   });
    /////////////////on click get button text and retrieve api info//////////////////////////////////////
     $(document).on("click", "button.topicBut", function() {
         $("#videoField").empty();
         var clickValue = $(this).text();
-
-        console.log(clickValue);
 
 
         var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + clickValue + "&api_key=dc6zaTOxFJmzC&limit=&limit=" + videoReturnAmount + "";
@@ -35,13 +40,14 @@ $(document).ready(function() {
           method: "GET"
           }).then(function(response) {
 
-
+            console.log(response);
          for (var i = 0; i < videoReturnAmount; i++) {
       
            video = response.data[i].images.original.url;
 
-           image = video.replace("giphy.gif", "480w_s.jpg");
-           console.log(image);
+           image = video.replace("giphy.gif", "giphy_s.gif");
+
+
          
            $("#videoField").append("<img src=" + image + ">");
 
@@ -71,38 +77,6 @@ $(document).ready(function() {
      }
 
     });
-
-
-    
-
-
-     //var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + userSearchTerm + "&api_key=dc6zaTOxFJmzC&limit=&limit=" + videoReturnAmount + "";
-
-       // $.ajax({
-         //  url: queryURL,
-         //  method: "GET"
-         //  }).then(function(response) {
-         //  console.log(response);
-
-       
-
-       
-
-         //for (var i = 0; i < videoReturnAmount; i++) {
-      
-          // var video = response.data[i].images.original.url;
-
-          // var image = video.replace("giphy.gif", "480w_s.jpg");
-         
-          // $("#videoField").html("<img src=" + video + ">");
-
-          //}
-
-
-       // });
-    
-
-    
 
    });
 
