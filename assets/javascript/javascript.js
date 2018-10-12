@@ -16,14 +16,15 @@ for (var i = 0; i < topics.length; i++) {
 $(document).ready(function() {
 
   $(document).on("click", "img", function() {
-    var picValue = $(this).attr("src");
-    if (picValue.indexOf("giphy_s.gif") !== -1) {
-      picValue = picValue.replace("giphy_s.gif", "giphy.gif");
-      $(this).attr("src", picValue);
+    var picValue = $(this).attr("data-live");
+    if (picValue === "no") {
+      $(this).attr("data-live", "yes");
+      $(this).attr("src", $(this).attr("data-vid"));
+
     }
-    else {
-     picValue = picValue.replace( "giphy.gif", "giphy_s.gif");
-    $(this).attr("src", picValue);
+    else if (picValue === "yes") {
+      $(this).attr("data-live", "no");
+      $(this).attr("src", $(this).attr("data-img"));
     }
 
   });
@@ -45,20 +46,25 @@ $(document).ready(function() {
       
            video = response.data[i].images.original.url;
 
-           image = video.replace("giphy.gif", "giphy_s.gif");
+           image = response.data[i].images.original_still.url;
 
+           rating = (response.data[i].rating).toUpperCase();
+
+           var imagElement = $("<img>");
+           $(imagElement).attr("src", image).attr("data-img", image).attr("data-vid", video).attr("data-live", "no");
+        
+           var pImage = $("<p>");
+
+           $(pImage).append("Rated: " + rating + "<br>").append(imagElement).addClass("gif");
 
          
-           $("#videoField").append("<img src=" + image + ">");
+           $("#videoField").append(pImage);
 
           }
 
-
         });
         
-  
       });
-
 
 
     /////search click/////////
