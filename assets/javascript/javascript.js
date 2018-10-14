@@ -45,7 +45,7 @@ $(document).ready(function() {
         $("#videoField").empty();
         var clickValue = $(this).text();
 
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + clickValue + "&api_key=dc6zaTOxFJmzC&limit=&limit=" + videoReturnAmount + "";
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + clickValue + "&api_key=dc6zaTOxFJmzC&limit=&limit=" + videoReturnAmount + "";
 
         $.ajax({
           url: queryURL,
