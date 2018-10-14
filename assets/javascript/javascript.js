@@ -17,7 +17,7 @@ for (var i = 0; i < topics.length; i++) {
 var checkStorage = JSON.parse(localStorage.getItem("SavedTopics"));
 
 console.log(checkStorage);
-if (checkStorage.length !== 0) {
+if (checkStorage !== null && checkStorage.length !== 0) {
   for (var t = 0; t < checkStorage.length; t++) {
   $("#buttonField").append("<button id='" + checkStorage[t] + "'class='topicBut saved' value =" + checkStorage[t] + ">" + checkStorage[t] + "</button>");
   }
@@ -45,7 +45,7 @@ $(document).ready(function() {
         $("#videoField").empty();
         var clickValue = $(this).text();
 
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + clickValue + "&api_key=dc6zaTOxFJmzC&limit=&limit=" + videoReturnAmount + "";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + clickValue + "&api_key=dc6zaTOxFJmzC&limit=&limit=" + videoReturnAmount + "";
 
         $.ajax({
           url: queryURL,
