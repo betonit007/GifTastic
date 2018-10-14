@@ -6,15 +6,27 @@ var video;
 var image;
 var getVid;
 
-//////create buttons////////////////
+/////////add permanent topics///////////////
 for (var i = 0; i < topics.length; i++) {
        
     $("#buttonField").append("<button id=" + topics[i] + " class='topicBut' value =" + topics[i] + ">" + topics[i] + "</button>");
 }
 
 
+//////check for add/saved topics////////////////
+var checkStorage = JSON.parse(localStorage.getItem("SavedTopics"));
+
+console.log(checkStorage);
+if (checkStorage.length !== 0) {
+  for (var t = 0; t < checkStorage.length; t++) {
+  $("#buttonField").append("<button id=" + checkStorage[t] + " class='topicBut saved' value =" + checkStorage[t] + ">" + checkStorage[t] + "</button>");
+  }
+}
+
+
 $(document).ready(function() {
 
+//////////////"listen" for dynamic img click///////////////////////
   $(document).on("click", "img", function() {
     var picValue = $(this).attr("data-live");
     if (picValue === "no") {
@@ -33,7 +45,6 @@ $(document).ready(function() {
         $("#videoField").empty();
         var clickValue = $(this).text();
 
-
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + clickValue + "&api_key=dc6zaTOxFJmzC&limit=&limit=" + videoReturnAmount + "";
 
         $.ajax({
@@ -41,7 +52,6 @@ $(document).ready(function() {
           method: "GET"
           }).then(function(response) {
 
-            console.log(response);
          for (var i = 0; i < videoReturnAmount; i++) {
       
            video = response.data[i].images.original.url;
@@ -67,24 +77,38 @@ $(document).ready(function() {
       });
 
 
-    /////search click/////////
+    /////search click///////////////////////////////////////
    $("#buttonSearch").on("click", function(event) {
-     userSearchTerm = $("#userInput").val();
-
-     topics.push(userSearchTerm);
-
-     $("#buttonField").empty();
-    
-     //////add search term to array/////
-     for (var i = 0; i < topics.length; i++) {
+      userSearchTerm = $("#userInput").val().trim();
+      $("#userInput").val('');
+      if (userSearchTerm !== "") {
+        /////////local storage for Topics/////////////////////
+        var tempTopics = localStorage.getItem("SavedTopics");
+        tempTopics = JSON.parse(tempTopics);
+        tempTopics.push(userSearchTerm);
+        $(".saved").remove();
        
-        $("#buttonField").append("<button id=" + topics[i] + " class='topicBut' value =" + topics[i] + ">" + topics[i] + "</button>");
+          for (var g = 0; g < tempTopics.length; g++) {
+       
+           $("#buttonField").append("<button id=" + tempTopics[g] + " class='topicBut saved' value =" + tempTopics[g] + ">" + tempTopics[g] + "</button>");
      
-     }
+          }
+
+        tempTopics = JSON.stringify(tempTopics);
+        localStorage.setItem("SavedTopics", tempTopics);
+      }
+
 
     });
+///////////////clear user entered search terms///////////////////
+    $("#clearSaved").on("click", function() {
+      $(".saved").remove();
+      var clearAll = [];
+      clearAll = JSON.stringify(clearAll);
+      localStorage.setItem("SavedTopics", clearAll);
+    });
 
-   });
+});
 
 
 
