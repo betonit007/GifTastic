@@ -3,10 +3,36 @@
 }
 
 button {
-    margin: 5px;
+    background-color: grey;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 12px;
 }
 
 .gif {
     float: left;
     margin: 5px;
 }
+
+.input-group-append {
+    float: left;
+}   
+
+.container {
+    border: 1px solid grey;
+    
+}
+
+.saved, #clearSaved {
+    background-color: rgb(159, 152, 251);
+}
+
+
+
+
