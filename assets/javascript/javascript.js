@@ -117,11 +117,17 @@ $(document).ready(function() {
 /////////////Increase Gif Return/////////////////////////////////
     $("#addOne").on("touch click", function() {
       videoReturnAmount++;
+      if (videoReturnAmount === 26) {
+        videoReturnAmount = 25;
+      }
       $("#numberGifs").text(videoReturnAmount + " Gifs");
     });
 /////////////Decrease Gif Return////////////////////////////////
     $("#subtractOne").on("touch click", function() {
       videoReturnAmount--;
+      if (videoReturnAmount === 0) {
+        videoReturnAmount = 1;
+      }
       $("#numberGifs").text(videoReturnAmount + " Gifs");
     });
 
