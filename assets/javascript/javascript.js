@@ -84,8 +84,9 @@ $(document).ready(function() {
       if (userSearchTerm !== "") {
         /////////local storage for Topics/////////////////////
         var tempTopics = localStorage.getItem("SavedTopics");
-        tempTopics = JSON.parse(tempTopics);
-        tempTopics.push(userSearchTerm);
+        if (tempTopics) {
+          tempTopics = JSON.parse(tempTopics);
+          tempTopics.push(userSearchTerm);
         $(".saved").remove();
        
           for (var g = 0; g < tempTopics.length; g++) {
@@ -93,7 +94,7 @@ $(document).ready(function() {
            $("#buttonField").append("<button id='" + tempTopics[g] + "' class='topicBut saved' value =" + tempTopics[g] + ">" + tempTopics[g] + "</button>");
      
           }
-
+        }
         tempTopics = JSON.stringify(tempTopics);
         localStorage.setItem("SavedTopics", tempTopics);
       }
