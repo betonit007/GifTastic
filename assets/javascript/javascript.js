@@ -108,6 +108,17 @@ $(document).ready(function() {
       localStorage.setItem("SavedTopics", clearAll);
     });
 
+/////////////Increase Gif Return/////////////////////////////////
+    $("#addOne").on("touch click", function() {
+      videoReturnAmount++;
+      $("#numberGifs").text(videoReturnAmount + " Gifs");
+    });
+/////////////Decrease Gif Return////////////////////////////////
+    $("#subtractOne").on("touch click", function() {
+      videoReturnAmount--;
+      $("#numberGifs").text(videoReturnAmount + " Gifs");
+    });
+
 });
 
 

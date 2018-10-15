@@ -2,6 +2,10 @@
     padding: 10px 5px 10px 5px;
 }
 
+#videoField {
+    overflow: hidden;
+}
+
 button {
     background-color: grey;
     border: none;
@@ -31,6 +35,17 @@ button {
 
 .saved, #clearSaved {
     background-color: rgb(159, 152, 251);
+}
+
+#header {
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  font-size: 70px;
+  text-align: center;
+}
+
+.floatRight {
+    float: right;
 }
 
 
