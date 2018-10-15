@@ -1,9 +1,10 @@
-#search, #videoField, #videoField {
+#search {
     padding: 10px 5px 10px 5px;
 }
 
 #videoField {
     overflow: hidden;
+    padding: 3px;
 }
 
 button {
@@ -21,7 +22,7 @@ button {
 
 .gif {
     float: left;
-    margin: 5px 5%;
+    margin: 3px;
 }
 
 .input-group-append {
