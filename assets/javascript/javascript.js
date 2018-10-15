@@ -27,7 +27,7 @@ if (checkStorage !== null && checkStorage.length !== 0) {
 $(document).ready(function() {
 
 //////////////"listen" for dynamic img click///////////////////////
-  $(document).on("touchstart click", "img", function() {
+  $(document).on("touch click", "img", function() {
     var picValue = $(this).attr("data-live");
     if (picValue === "no") {
       $(this).attr("data-live", "yes");
@@ -41,7 +41,7 @@ $(document).ready(function() {
 
   });
    /////////////////on click get button text and retrieve api info//////////////////////////////////////
-    $(document).on("touchstart click", "button.topicBut", function() {
+    $(document).on("touch click", "button.topicBut", function() {
         $("#videoField").empty();
         var clickValue = $(this).text();
 
@@ -78,7 +78,7 @@ $(document).ready(function() {
 
 
     /////search click///////////////////////////////////////
-   $("#buttonSearch").on("touchstart click", function(event) {
+   $("#buttonSearch").on("touch click", function(event) {
       userSearchTerm = $("#userInput").val().trim();
       $("#userInput").val('');
       if (userSearchTerm !== "") {
@@ -101,7 +101,7 @@ $(document).ready(function() {
 
     });
 ///////////////clear user entered search terms///////////////////
-    $("#clearSaved").on("touchstart click", function() {
+    $("#clearSaved").on("touch click", function() {
       $(".saved").remove();
       var clearAll = [];
       clearAll = JSON.stringify(clearAll);
