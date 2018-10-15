@@ -16,7 +16,7 @@ for (var i = 0; i < topics.length; i++) {
 //////check for add/saved topics////////////////
 var checkStorage = JSON.parse(localStorage.getItem("SavedTopics"));
 
-console.log(checkStorage);
+
 if (checkStorage !== null && checkStorage.length !== 0) {
   for (var t = 0; t < checkStorage.length; t++) {
   $("#buttonField").append("<button id='" + checkStorage[t] + "'class='topicBut saved' value =" + checkStorage[t] + ">" + checkStorage[t] + "</button>");
@@ -84,19 +84,24 @@ $(document).ready(function() {
       if (userSearchTerm !== "") {
         /////////local storage for Topics/////////////////////
         var tempTopics = localStorage.getItem("SavedTopics");
-        if (tempTopics) {
-          tempTopics = JSON.parse(tempTopics);
-          tempTopics.push(userSearchTerm);
+        //////////////if first time or no local storage found//////////////////////////
+        if (tempTopics === null || tempTopics === undefined || tempTopics === 'null') {
+         tempTopics = [];
+         tempTopics = JSON.stringify(tempTopics);
+        } 
+        
+        tempTopics = JSON.parse(tempTopics);
+        tempTopics.push(userSearchTerm);
         $(".saved").remove();
        
-          for (var g = 0; g < tempTopics.length; g++) {
+        for (var g = 0; g < tempTopics.length; g++) {
        
-           $("#buttonField").append("<button id='" + tempTopics[g] + "' class='topicBut saved' value =" + tempTopics[g] + ">" + tempTopics[g] + "</button>");
-     
-          }
+          $("#buttonField").append("<button id='" + tempTopics[g] + "' class='topicBut saved' value =" + tempTopics[g] + ">" + tempTopics[g] + "</button>");
         }
         tempTopics = JSON.stringify(tempTopics);
         localStorage.setItem("SavedTopics", tempTopics);
+        
+        
       }
 
 
